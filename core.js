@@ -36,6 +36,25 @@
 
 
 
+// const mix = rxjs.of('whatever', ['you', 'want'], 14, true, {cool: 'stuff'});
+// mix.subscribe(val => print(val));
+
+
+
+// TODO Fix this with v.6
+const cold = rxjs.Observable.create(observer => {
+  observer.next(Math.random());
+})
+const hot = cold.publish();
+cold.subscribe(a => print(`Subscriber A: ${a}`));
+cold.subscribe(b => print(`Subscriber B: ${b}`));
+//hot.connect();
+hot.subscribe(a => print(`Subscriber A: ${a}`));
+hot.subscribe(b => print(`Subscriber B: ${b}`));
+
+
+
+
 // Prints results on browser
 function print(val) {
   let el = document.createElement('p');
